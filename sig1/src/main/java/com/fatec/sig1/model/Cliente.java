@@ -3,8 +3,6 @@ package com.fatec.sig1.model;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.br.CPF;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -16,6 +14,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 public class Cliente {
