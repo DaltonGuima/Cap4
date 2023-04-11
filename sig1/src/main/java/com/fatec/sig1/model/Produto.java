@@ -1,4 +1,4 @@
-package com.fatec.sig1.model;
+/* package com.fatec.sig1.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -7,7 +7,6 @@ import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Produto {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -81,4 +80,4 @@ public class Produto {
         this.status = status;
     }
 
-}
+} */

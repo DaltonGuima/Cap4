@@ -49,14 +49,6 @@ public class MantemClienteI implements MantemCliente {
 	}
 
 	@Override
-	public Optional<Cliente> save(Cliente cliente) {
-		logger.info(">>>>>> servico save chamado ");
-		Endereco endereco = obtemEndereco(cliente.getCep());
-		cliente.setEndereco(endereco.getLogradouro());
-		return Optional.ofNullable(repository.save(cliente));
-	}
-
-	@Override
 	public void delete(Long id) {
 		logger.info(">>>>>> servico delete por id chamado");
 		repository.deleteById(id);
@@ -91,5 +83,14 @@ public class MantemClienteI implements MantemCliente {
 			logger.info(">>>>>> consulta CEP inválido erro HttpClientErrorException =>" + e.getMessage());
 			return null;
 		}
+	}
+
+	@Override
+	public Optional<Cliente> save(Cliente cliente) {
+		logger.info(">>>>>> servico save chamado ");
+		cliente.setDataCadastro(new DateTime());
+		Endereco endereco = obtemEndereco(cliente.getCep());
+		cliente.setEndereco(endereco.getLogradouro());
+		return Optional.ofNullable(repository.save(cliente));
 	}
 }
