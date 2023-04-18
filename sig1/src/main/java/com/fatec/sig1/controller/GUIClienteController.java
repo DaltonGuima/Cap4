@@ -1,4 +1,7 @@
 package com.fatec.sig1.controller;
+
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +25,8 @@ public class GUIClienteController {
     MantemCliente servico;
 
     @GetMapping("/clientes")
-    public ModelAndView retornaFormDeConsultaTodosClientes() {
-        logger.info(">>>>>> controller consulta todos chamado");
-        ModelAndView modelAndView = new ModelAndView("consultarCliente");
-        modelAndView.addObject("clientes", servico.consultaTodos());
-        return modelAndView;
+    public List<Cliente> teste() {
+        return servico.consultaTodos();
     }
 
     @GetMapping("/cliente")
