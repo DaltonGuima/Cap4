@@ -57,6 +57,7 @@ public class APIClienteController {
         if (endereco.isEmpty()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("CEP invalido");
         }
+
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(mantemCliente.save(clienteDTO.retornaUmCliente()));
         } catch (Exception e) {
