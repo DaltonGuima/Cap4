@@ -7,10 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.fatec.sig1.model.Build;
 import com.fatec.sig1.model.Repositorys.MantemBuildRepository;
-import com.google.gwt.thirdparty.guava.common.base.Optional;
 
 @Service
-
 public class MantemBuildI {
 	Logger logger = LogManager.getLogger(this.getClass());
 	@Autowired

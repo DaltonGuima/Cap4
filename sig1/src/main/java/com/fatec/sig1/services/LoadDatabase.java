@@ -2,12 +2,10 @@ package com.fatec.sig1.services;
 
 import java.util.HashMap;
 
-import org.hibernate.mapping.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.context.properties.source.MapConfigurationPropertySource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -22,8 +20,13 @@ class LoadDatabase {
     @Autowired
     MantemClienteRepository clienteRepository;
 
+    /**
+     * @param repository
+     * @param repository2
+     * @return
+     */
     @Bean
-    CommandLineRunner initDatabase(MantemClienteRepository repository) {
+    CommandLineRunner initDatabase(MantemClienteRepository repository, MantemProdutoRepository repository2) {
         return args -> {
             repository.deleteAll();
             Cliente cliente1 = new Cliente("Jose da Silva", "01/03/1964", "M", "59672555598", "03694000", "2983");
@@ -37,6 +40,14 @@ class LoadDatabase {
             cliente3.setEndereco("Rua Frei Joao");
             log.info("Preloading " + repository.save(cliente3));
 
+            HashMap<String, String> teste = new HashMap<String, String>();
+
+            teste.put("aaaaaa", "aaaaaaaa");
+            teste.put("aaaaaab", "aaaaaaaa");
+
+            Produto produto1 = new Produto("teste", "teste", "teste", 0, "teste", "teste");
+            produto1.setEspecificacao(teste);
+            repository2.save(produto1);
         };
     }
 
