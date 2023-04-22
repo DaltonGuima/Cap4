@@ -135,11 +135,11 @@ public class Produto {
     }
 
     public Map<String, String> getEspecificacao() {
-        return especificacao;
+        return especificacoes;
     }
 
-    public void setEspecificacao(Map<String, String> especificacao) {
-        this.especificacao = especificacao;
+    public void setEspecificacao(Map<String, String> especificacoes) {
+        this.especificacoes = especificacoes;
     }
 
 }
