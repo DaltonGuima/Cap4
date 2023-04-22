@@ -11,9 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
-import com.fatec.sig1.model.Cliente;
-import com.fatec.sig1.model.MantemClienteRepository;
-import com.fatec.sig1.model.Endereco;
+
+import com.fatec.sig1.model.Cliente.Cliente;
+import com.fatec.sig1.model.Cliente.Endereco;
+import com.fatec.sig1.model.Repositorys.MantemClienteRepository;
 
 /**
  * A classe mantem cliente implementa o padrao Service. Servce eh um padrao que

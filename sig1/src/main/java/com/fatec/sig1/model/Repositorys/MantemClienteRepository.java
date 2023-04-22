@@ -1,9 +1,10 @@
-package com.fatec.sig1.model;
+package com.fatec.sig1.model.Repositorys;
 
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+
+import com.fatec.sig1.model.Cliente.Cliente;
 
 /**
  * Esta classe abstrai a programação de consultas para acesso ao banco de dados.
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Repository;
  * 
  * @author
  */
-@Repository
 public interface MantemClienteRepository extends JpaRepository<Cliente, Long> {
 	Optional<Cliente> findByCpf(String cpf);
 

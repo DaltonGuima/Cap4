@@ -2,8 +2,9 @@ package com.fatec.sig1.services;
 
 import java.util.List;
 import java.util.Optional;
-import com.fatec.sig1.model.Cliente;
-import com.fatec.sig1.model.Endereco;
+
+import com.fatec.sig1.model.Cliente.Cliente;
+import com.fatec.sig1.model.Cliente.Endereco;
 
 public interface MantemCliente {
 	List<Cliente> consultaTodos();

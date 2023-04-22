@@ -12,9 +12,11 @@ public class Build {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @NotNull(message = "Modelo é requerido")
+    @NotBlank(message = "Nome é requerido")
+    private String Nome;
+    @NotNull(message = "Preço é requerido")
     private float Orcamento;
-    @NotBlank(message = "Preço é requerido")
+    @NotBlank(message = "Descrição é requerida")
     private String Descricao;
 
     public Build() {
@@ -26,6 +28,14 @@ public class Build {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getNome() {
+        return Nome;
+    }
+
+    public void setNome(String nome) {
+        Nome = nome;
     }
 
     public float getOrcamento() {
@@ -44,11 +54,13 @@ public class Build {
         Descricao = descricao;
     }
 
-    public Build(Long id, @NotNull(message = "Modelo é requerido") float orcamento,
-            @NotBlank(message = "Preço é requerido") String descricao) {
-        this.id = id;
+    public Build(@NotNull(message = "Modelo é requerido") float orcamento,
+            @NotBlank(message = "Preço é requerido") String descricao,
+            @NotBlank(message = "Nome é requerido") String nome) {
         Orcamento = orcamento;
         Descricao = descricao;
+        Nome = nome;
+        
     }
 
 }

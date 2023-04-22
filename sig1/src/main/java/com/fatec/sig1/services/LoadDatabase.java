@@ -1,14 +1,20 @@
 package com.fatec.sig1.services;
 
+import java.util.HashMap;
+
+import org.hibernate.mapping.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.context.properties.source.MapConfigurationPropertySource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.fatec.sig1.model.Cliente;
-import com.fatec.sig1.model.MantemClienteRepository;
+import com.fatec.sig1.model.Cliente.Cliente;
+import com.fatec.sig1.model.Produto.Produto;
+import com.fatec.sig1.model.Repositorys.MantemClienteRepository;
+import com.fatec.sig1.model.Repositorys.MantemProdutoRepository;
 
 @Configuration
 class LoadDatabase {
@@ -31,15 +37,7 @@ class LoadDatabase {
             cliente3.setEndereco("Rua Frei Joao");
             log.info("Preloading " + repository.save(cliente3));
 
-            /*
-             * ItemBuild teste = new ItemBuild();
-             * ItemBuild teste1 = new ItemBuild();
-             * ArrayList<ItemBuild> a = new ArrayList<ItemBuild>();
-             * a.add(teste1);
-             * a.add(teste);
-             * Build build1 = new Build(1.2f,"a",a);
-             * log.info("a", + repository.save(build1))
-             */
         };
     }
+
 }

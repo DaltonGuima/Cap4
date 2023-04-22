@@ -1,4 +1,4 @@
-package com.fatec.sig1.model;
+package com.fatec.sig1.model.Cliente;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -25,7 +25,7 @@ public class Cliente {
 	@NotBlank(message = "Nome é requerido")
 	private String nome;
 	@Pattern(regexp = "^(0?[1-9]|[12][0-9]|3[01])[\\/-](0?[1-9]|1[012])[\\/-]\\d{4}$", message = "A data de nascimento deve estar no formato dd/MM/YYYY")
-    //https://www.regular-expressions.info/
+	// https://www.regular-expressions.info/
 	private String dataNascimento;
 	private String dataCadastro;
 	@NotBlank(message = "Sexo M/F")
@@ -138,7 +138,7 @@ public class Cliente {
 			return false;
 		}
 	}
-	
+
 	public String obtemDataAtual(DateTime dataAtual) {
 		DateTimeFormatter fmt = DateTimeFormat.forPattern("dd/MM/YYYY");
 		return dataAtual.toString(fmt);

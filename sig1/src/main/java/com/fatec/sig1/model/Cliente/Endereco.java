@@ -1,4 +1,5 @@
-package com.fatec.sig1.model;
+package com.fatec.sig1.model.Cliente;
+
 public class Endereco {
 	private Long id;
 	private String cpf;
@@ -86,6 +87,6 @@ public class Endereco {
 	public void setUf(String uf) {
 		this.uf = uf;
 	}
-// omitidos hashcode e equals
-// omitido toString
+	// omitidos hashcode e equals
+	// omitido toString
 }

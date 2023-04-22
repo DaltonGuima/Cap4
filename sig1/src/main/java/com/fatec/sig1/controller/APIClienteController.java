@@ -17,9 +17,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.fatec.sig1.model.Cliente;
-import com.fatec.sig1.model.ClienteDTO;
-import com.fatec.sig1.model.Endereco;
+
+import com.fatec.sig1.model.Cliente.Cliente;
+import com.fatec.sig1.model.Cliente.ClienteDTO;
+import com.fatec.sig1.model.Cliente.Endereco;
 import com.fatec.sig1.services.MantemClienteI;
 
 import jakarta.validation.Valid;
