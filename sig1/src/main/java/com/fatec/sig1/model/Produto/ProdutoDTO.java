@@ -1,6 +1,6 @@
 package com.fatec.sig1.model.Produto;
 
-import org.hibernate.mapping.Map;
+import java.util.Map;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -19,20 +19,22 @@ public class ProdutoDTO {
     @NotBlank(message = "Link do Produto é requerido")
     private String linkProduto;
     @NotNull
-    private Map especificacoes;
+    private Map<String, String> especificacoes;
 
     public ProdutoDTO(String nome,
             String fabricante,
             String modelo,
             float preco,
             String vendedor,
-            String linkProduto) {
+            String linkProduto,
+            Map<String, String> especificacoes) {
         this.nome = nome;
         this.fabricante = fabricante;
         this.modelo = modelo;
         this.preco = preco;
         this.vendedor = vendedor;
         this.linkProduto = linkProduto;
+        this.especificacoes = especificacoes;
     }
 
     public String getNome() {

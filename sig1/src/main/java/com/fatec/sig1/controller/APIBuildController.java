@@ -19,75 +19,73 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fatec.sig1.model.Produto.Produto;
-import com.fatec.sig1.model.Produto.ProdutoDTO;
-import com.fatec.sig1.services.MantemProduto;
+import com.fatec.sig1.model.Build.Build;
+import com.fatec.sig1.model.Build.BuildDTO;
+import com.fatec.sig1.services.MantemBuild;
 
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/v1/produtos")
-
-public class APIProdutoController {
+@RequestMapping("/api/v1/builds")
+public class APIBuildController {
     @Autowired
-    MantemProduto mantemProduto;
-    Produto produto;
+    MantemBuild mantemBuild;
+    Build build;
     Logger logger = LogManager.getLogger(this.getClass());
 
     @CrossOrigin // desabilita o cors do spring security
-    @GetMapping
-    public ResponseEntity<List<Produto>> consultaTodos() {
-        return ResponseEntity.status(HttpStatus.OK).body(mantemProduto.consultaTodos());
-    }
-
-    @CrossOrigin // desabilita o cors do spring security
     @PostMapping
-    public ResponseEntity<Object> saveCliente(@RequestBody @Valid ProdutoDTO produtoDTO, BindingResult result) {
+    public ResponseEntity<Object> saveCliente(@RequestBody @Valid BuildDTO buildDTO, BindingResult result) {
         if (result.hasErrors()) {
             logger.info(">>>>>> apicontroller validacao da entrada dados invalidos" + result.getFieldError());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Dados inválidos.");
         }
-
         try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(mantemProduto.save(produtoDTO.returnOneProduto()));
+            return ResponseEntity.status(HttpStatus.CREATED).body(mantemBuild.save(buildDTO.retornaUmaBuild()));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro não esperado ");
         }
     }
 
     @CrossOrigin // desabilita o cors do spring security
+    @GetMapping
+    public ResponseEntity<List<Build>> consultaTodos() {
+        return ResponseEntity.status(HttpStatus.OK).body(mantemBuild.consultaTodos());
+    }
+
+    @CrossOrigin // desabilita o cors do spring security
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deletePorId(@PathVariable(value = "id") Long id) {
-        Optional<Produto> produto = mantemProduto.consultaPorId(id);
-        if (produto.isEmpty()) {
+        Optional<Build> build = mantemBuild.consultaPorId(id);
+        if (build.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado.");
         }
-        mantemProduto.delete(produto.get().getId());
+        mantemBuild.delete(build.get().getId());
         return ResponseEntity.status(HttpStatus.OK).body("Cliente excluido");
     }
 
-    @CrossOrigin
+    @CrossOrigin // desabilita o cors do spring security
     @PutMapping("/{id}")
-    public ResponseEntity<Object> atualiza(@PathVariable long id, @RequestBody @Valid ProdutoDTO produtoDTO,
+    public ResponseEntity<Object> atualiza(@PathVariable long id, @RequestBody @Valid BuildDTO buildDTO,
             BindingResult result) {
         logger.info(">>>>>> api atualiza informações de cliente chamado");
         if (result.hasErrors()) {
             logger.info(">>>>>> apicontroller atualiza informações de cliente chamado dados invalidos");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Dados inválidos.");
         }
-        Optional<Produto> p = mantemProduto.consultaPorId(id);
-        if (p.isEmpty()) {
+        Optional<Build> c = mantemBuild.consultaPorId(id);
+        if (c.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado.");
         }
-        Optional<Produto> cliente = mantemProduto.atualiza(id, produtoDTO.returnOneProduto());
-        return ResponseEntity.status(HttpStatus.OK).body(cliente.get());
+        Optional<Build> build = mantemBuild.atualiza(id, buildDTO.retornaUmaBuild());
+        return ResponseEntity.status(HttpStatus.OK).body(build.get());
     }
 
-    @CrossOrigin
+    @CrossOrigin // desabilita o cors do spring security
     @GetMapping("/{id}")
     public ResponseEntity<Object> consultaPorId(@PathVariable Long id) {
         logger.info(">>>>>> apicontroller consulta por id chamado");
-        Optional<Produto> cliente = mantemProduto.consultaPorId(id);
+        Optional<Build> cliente = mantemBuild.consultaPorId(id);
         if (cliente.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado.");
         }

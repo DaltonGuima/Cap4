@@ -9,8 +9,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.fatec.sig1.model.Build.Build;
 import com.fatec.sig1.model.Cliente.Cliente;
 import com.fatec.sig1.model.Produto.Produto;
+import com.fatec.sig1.model.Repositorys.MantemBuildRepository;
 import com.fatec.sig1.model.Repositorys.MantemClienteRepository;
 import com.fatec.sig1.model.Repositorys.MantemProdutoRepository;
 
@@ -26,9 +28,11 @@ class LoadDatabase {
      * @return
      */
     @Bean
-    CommandLineRunner initDatabase(MantemClienteRepository repository, MantemProdutoRepository repository2) {
+    CommandLineRunner initDatabase(MantemClienteRepository repository, MantemProdutoRepository repository2,
+            MantemBuildRepository repository3) {
         return args -> {
             repository.deleteAll();
+            // Cliente
             Cliente cliente1 = new Cliente("Jose da Silva", "01/03/1964", "M", "59672555598", "03694000", "2983");
             cliente1.setEndereco("Aguia de Haia");
             log.info("Preloading " + repository.save(cliente1));
@@ -40,14 +44,18 @@ class LoadDatabase {
             cliente3.setEndereco("Rua Frei Joao");
             log.info("Preloading " + repository.save(cliente3));
 
+            // Produto
             HashMap<String, String> teste = new HashMap<String, String>();
 
             teste.put("aaaaaa", "aaaaaaaa");
             teste.put("aaaaaab", "aaaaaaaa");
 
-            Produto produto1 = new Produto("teste", "teste", "teste", 0, "teste", "teste");
-            produto1.setEspecificacao(teste);
+            Produto produto1 = new Produto("teste", "teste", "teste", 0, "teste", "teste", teste);
             repository2.save(produto1);
+
+            // Build
+            Build build = new Build(0, "teste", "teste");
+            repository3.save(build);
         };
     }
 

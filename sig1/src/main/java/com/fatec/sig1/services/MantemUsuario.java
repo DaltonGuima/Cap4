@@ -1,23 +1,55 @@
 package com.fatec.sig1.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.fatec.sig1.model.Usuario.Usuario;
+import com.fatec.sig1.model.Repositorys.MantemUsuarioRepository;
+
 import java.util.List;
 import java.util.Optional;
 
-import com.fatec.sig1.model.Usuario.Usuario;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-public interface MantemUsuario {
-    List<Usuario> consultaTodos();
+@Service
+public class MantemUsuario {
 
-    Optional<Usuario> consultaPorNome(String nome);
+    Logger logger = LogManager.getLogger(this.getClass());
+    @Autowired
+    MantemUsuarioRepository repository;
 
-    Optional<Usuario> consultaPorEmail(String email);
+    public List<Usuario> consultaTodos() {
+        logger.info(">>>>>> servico consultaTodos chamado");
+        return repository.findAll();
+    }
 
-    Optional<Usuario> consultaPorId(Long id);
+    public Optional<Usuario> consultaPorId(Long id) {
+        logger.info(">>>>>> servico consultaPorId chamado");
+        return repository.findById(id);
+    }
 
-    Optional<Usuario> save(Usuario usuario);
+    public void delete(Long id) {
+        logger.info(">>>>>> servico delete por id chamado");
+        repository.deleteById(id);
+    }
 
-    void delete(Long id);
+    public Optional<Usuario> consultaPorNome(String Nome) {
+        logger.info(">>>>>> servico consultaPorNome chamado");
+        return repository.findByNome(Nome);
+    }
 
-    Optional<Usuario> atualiza(Long id, Usuario usuario);
+    public Optional<Usuario> save(Usuario usuario) {
+        logger.info(">>>>>> servico save chamado ");
+        return Optional.ofNullable(repository.save(usuario));
+    }
 
+    public Optional<Usuario> atualiza(Long id, Usuario usuario) {
+        logger.info(">>>>>> 1.servico atualiza informações do usuario chamado");
+        Usuario usuarioModificado = new Usuario(usuario.getNome(), usuario.getDataNascimento(), usuario.getEmail(),
+                usuario.getSenha());
+        usuarioModificado.setId(id);
+        logger.info(usuarioModificado.getId());
+        return Optional.ofNullable(repository.save(usuarioModificado));
+    }
 }

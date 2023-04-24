@@ -1,4 +1,4 @@
-package com.fatec.sig1.model;
+package com.fatec.sig1.model.Build;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
