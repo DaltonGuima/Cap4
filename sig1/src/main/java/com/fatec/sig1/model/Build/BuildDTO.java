@@ -6,24 +6,24 @@ import jakarta.validation.constraints.NotNull;
 public class BuildDTO {
 
     @NotBlank(message = "Nome é requerido")
-    private String Nome;
+    private String nome;
     @NotNull(message = "Modelo é requerido")
     private float Orcamento;
     @NotBlank(message = "Preço é requerido")
     private String Descricao;
 
     public BuildDTO(String Nome, float Orcamento, String Descricao) {
-        this.Nome = Nome;
+        this.nome = Nome;
         this.Orcamento = Orcamento;
         this.Descricao = Descricao;
     }
 
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
-    public void setNome(String nome) {
-        Nome = nome;
+    public void setNome(String Nome) {
+        nome = Nome;
     }
 
     public float getOrcamento() {
@@ -43,7 +43,7 @@ public class BuildDTO {
     }
 
     public Build retornaUmaBuild() {
-        return new Build(Orcamento, Descricao, Nome);
+        return new Build(Orcamento, Descricao, nome);
     }
 
 }

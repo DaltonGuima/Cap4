@@ -20,6 +20,8 @@ public class ProdutoDTO {
     private String linkProduto;
     @NotNull
     private Map<String, String> especificacoes;
+    @NotBlank(message = "categoria do Produto é requerido")
+    private String categoria;
 
     public ProdutoDTO(String nome,
             String fabricante,
@@ -27,6 +29,7 @@ public class ProdutoDTO {
             float preco,
             String vendedor,
             String linkProduto,
+            String categoria,
             Map<String, String> especificacoes) {
         this.nome = nome;
         this.fabricante = fabricante;
@@ -35,6 +38,7 @@ public class ProdutoDTO {
         this.vendedor = vendedor;
         this.linkProduto = linkProduto;
         this.especificacoes = especificacoes;
+        this.categoria = categoria;
     }
 
     public String getNome() {
@@ -86,7 +90,7 @@ public class ProdutoDTO {
     }
 
     public Produto returnOneProduto() {
-        return new Produto(nome, fabricante, modelo, preco, vendedor, linkProduto, especificacoes);
+        return new Produto(nome, fabricante, modelo, preco, vendedor, linkProduto, especificacoes, categoria);
     }
 
 }

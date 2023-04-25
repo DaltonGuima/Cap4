@@ -1,6 +1,8 @@
 package com.fatec.sig1.model.Build;
 
 import java.util.List;
+import java.util.Set;
+
 import org.joda.time.DateTime;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -23,8 +25,6 @@ public class Build {
     private float Orcamento;
     @NotBlank(message = "Descrição é requerida")
     private String Descricao;
-    @OneToMany(mappedBy = "build", fetch = FetchType.LAZY, cascade = CascadeType.MERGE, orphanRemoval = true)
-    private List<ItemBuild> items;
 
     public Build() {
     }
@@ -53,9 +53,9 @@ public class Build {
         Descricao = descricao;
     }
 
-    public Build(@NotNull(message = "Modelo é requerido") float orcamento,
-            @NotBlank(message = "Preço é requerido") String descricao,
-            @NotBlank(message = "nome é requerido") String nome) {
+    public Build(float orcamento,
+            String descricao,
+            String nome) {
         Orcamento = orcamento;
         Descricao = descricao;
         this.nome = nome;
@@ -74,14 +74,6 @@ public class Build {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public List<ItemBuild> getItems() {
-        return items;
-    }
-
-    public void setItems(List<ItemBuild> items) {
-        this.items = items;
     }
 
 }

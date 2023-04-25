@@ -8,5 +8,6 @@
     "java.configuration.updateBuildConfiguration": "interactive",
     "[html]": {
         "editor.defaultFormatter": "vscode.html-language-features"
-    }
+    },
+    "java.debug.settings.onBuildFailureProceed": true
 }
